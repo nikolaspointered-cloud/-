@@ -1,0 +1,86 @@
+:root{
+  --accent:#0066ff;
+  --bg:#f5f7fb;
+  --card:#ffffff;
+  --muted:#6b7280;
+}
+*{box-sizing:border-box}
+body{font-family:Inter,Segoe UI,Arial,Helvetica,sans-serif;margin:0;background:var(--bg);color:#111}
+.container{max-width:1100px;margin:0 auto;padding:20px}
+.site-header{background:linear-gradient(90deg,#0f172a,#111827);color:#fff}
+.site-header .container{display:flex;align-items:center;justify-content:space-between}
+.site-header h1{margin:12px 0;font-size:20px}
+button{cursor:pointer}
+#cart-button{background:transparent;border:1px solid rgba(255,255,255,0.12);color:#fff;padding:8px 12px;border-radius:8px}
+.hero{padding:28px 0;text-align:center}
+.hero h2{margin:0 0 8px;font-size:28px}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;padding-bottom:60px}
+.card{background:var(--card);border-radius:12px;box-shadow:0 6px 18px rgba(15,23,42,0.06);overflow:hidden;padding:12px;display:flex;flex-direction:column}
+.carousel{position:relative;height:180px;border-radius:8px;overflow:hidden;background:#000}
+.carousel img{width:100%;height:100%;object-fit:cover;display:block}
+.carousel .dots{position:absolute;left:8px;bottom:8px;display:flex;gap:6px}
+.dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.6)}
+.product-body{padding:12px 6px;flex:1;display:flex;flex-direction:column}
+.product-title{font-weight:600;margin:0 0 6px}
+.price{font-size:18px;color:var(--accent);margin-bottom:6px}
+.warranty{font-size:13px;color:var(--muted);margin-bottom:10px}
+.card-controls{display:flex;gap:8px;align-items:center}
+.add-btn{background:var(--accent);color:#fff;border:none;padding:8px 12px;border-radius:8px}
+.more-btn{background:transparent;border:1px solid #e6e9ef;padding:6px 10px;border-radius:8px}
+
+.cart{position:fixed;right:0;top:0;width:360px;max-width:90%;height:100%;background:#fff;transform:translateX(110%);transition:transform .28s ease;box-shadow:-20px 0 40px rgba(2,6,23,0.12);z-index:60;display:flex;flex-direction:column}
+.cart.open{transform:translateX(0)}
+.overlay{position:fixed;inset:0;background:rgba(2,6,23,0.4);opacity:0;pointer-events:none;transition:opacity .18s;z-index:50}
+.overlay.show{opacity:1;pointer-events:auto}
+.cart-header{padding:16px;border-bottom:1px solid #f1f3f6;display:flex;justify-content:space-between;align-items:center}
+.cart-items{padding:12px;overflow:auto;flex:1}
+.cart-item{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #f3f4f6}
+.cart-item img{width:64px;height:64px;object-fit:cover;border-radius:8px}
+.cart-footer{padding:12px;border-top:1px solid #f1f3f6;display:flex;justify-content:space-between;align-items:center}
+.qty-controls{display:inline-flex;gap:6px;align-items:center}
+.qty-controls button{padding:4px 8px;border:1px solid #e6e9ef;background:#fff;border-radius:6px}
+
+@media (max-width:600px){.hero h2{font-size:20px}.carousel{height:160px}}
+
+/* Cart button bounce animation and blue-wind effect */
+.cart-control{position:relative;display:inline-block}
+#cart-button{transition:transform .2s ease, box-shadow .2s ease}
+@keyframes cart-bump {
+  0%{transform:translateY(0)}
+ 30%{transform:translateY(-10px) scale(1.03)}
+ 60%{transform:translateY(3px)}
+100%{transform:translateY(0)}
+}
+.bump{animation:cart-bump .6s cubic-bezier(.2,.8,.2,1)}
+
+.cart-wind{position:absolute;right:100%;top:50%;transform:translateY(-50%);width:0;height:12px;border-radius:999px;pointer-events:none;opacity:0}
+.cart-wind::before{content:'';display:block;width:100%;height:100%;border-radius:999px;background:linear-gradient(90deg, rgba(0,102,255,0.85), rgba(0,102,255,0.12));filter:blur(6px)}
+@keyframes wind-swipe{
+  0%{width:0;opacity:1;transform:translateY(-50%) translateX(0)}
+ 40%{width:60px;opacity:0.9;transform:translateY(-50%) translateX(-6px)}
+100%{width:140px;opacity:0;transform:translateY(-50%) translateX(-40px)}
+}
+.cart-wind.show{animation:wind-swipe .55s cubic-bezier(.2,.9,.2,1) forwards}
+
+/* Product card entrance and hover animations */
+@keyframes card-in{
+  from{opacity:0;transform:translateY(12px) scale(.995)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+.card{will-change:transform,opacity}
+.card.enter{animation:card-in .36s cubic-bezier(.2,.9,.2,1) both}
+.card:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(2,6,23,0.08)}
+.carousel img{transition:transform .35s ease}
+.carousel:hover img{transform:scale(1.04)}
+
+/* Credit / financing badge */
+.credit-badge{display:inline-block;background:linear-gradient(90deg,#eef6ff,#e6f0ff);color:var(--accent);padding:6px 8px;border-radius:8px;font-size:13px;margin-top:8px;font-weight:600;border:1px solid rgba(0,102,255,0.08)}
+
+/* deletion emphasis in cart */
+.cart-item button[disabled]{opacity:.5}
+.cart-item button{background:transparent;border:1px solid #f1f3f6;padding:6px 8px;border-radius:6px}
+
+/* focus styles for accessibility */
+:focus{outline:2px solid rgba(0,102,255,0.16);outline-offset:2px}
+
+
