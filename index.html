@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Магазин электроники — Реклама</title>
+  <!-- Security-related meta tags: basic CSP, frame and sniff protection, referrer policy -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://source.unsplash.com https://images.unsplash.com; style-src 'self' 'unsafe-inline'; script-src 'self'; object-src 'none'; frame-ancestors 'none';">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>ElectroProm — Лучшие устройства</h1>
+      <div class="cart-control">
+        <button id="cart-button" aria-label="Открыть корзину">
+          <span id="cart-icon" class="cart-icon" aria-hidden="true">
+            <!-- simple shopping cart SVG -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 3h2l.4 2M7 13h10l3-8H6.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="10" cy="20" r="1" fill="currentColor"/>
+              <circle cx="18" cy="20" r="1" fill="currentColor"/>
+            </svg>
+          </span>
+          <span id="cart-label" class="cart-label">Корзина</span>
+          <span id="cart-count" class="cart-count">0</span>
+        </button>
+        <span id="cart-wind" class="cart-wind" aria-hidden="true"></span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h2>Топ-качество техники. Гарантия. Доставка.</h2>
+      <p>Выберите устройство — добавьте в корзину, оформите заказ.</p>
+    </section>
+
+    <section id="products" class="products-grid"></section>
+  </main>
+
+  <aside id="cart" class="cart">
+    <div class="cart-header">
+      <h3>Ваша корзина</h3>
+      <button id="close-cart">Закрыть</button>
+    </div>
+    <div id="cart-items" class="cart-items"></div>
+    <div class="cart-footer">
+      <div>Итого: <strong id="cart-total">0 ₽</strong></div>
+      <button id="checkout">Оформить заказ</button>
+    </div>
+  </aside>
+
+  <div id="overlay" class="overlay"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
